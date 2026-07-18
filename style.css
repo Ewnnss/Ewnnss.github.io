@@ -228,3 +228,13 @@ footer {
     border-top: 1px solid #1f222a;
     margin-top: 50px;
 }
+
+.logo-splash {
+    width: 150px;
+    height: 150px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 30px rgba(88, 101, 242, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    object-fit: cover;
+}
