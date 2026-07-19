@@ -20,10 +20,11 @@
     --font-display:'Space Grotesk', sans-serif; --font-body:'Inter', sans-serif; --font-mono:'JetBrains Mono', monospace;
     --shadow-card: 0 1px 2px rgba(18,20,28,0.04), 0 8px 24px -12px rgba(18,20,28,0.10);
     --sidebar-w: 268px;
+    --paper-cyan:#EBFBFD; --paper-magenta:#FDEEF8;
   }
   *{box-sizing:border-box;}
   @media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
-  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+  body{margin:0; background:linear-gradient(160deg, var(--paper-cyan) 0%, var(--paper) 38%, var(--paper) 62%, var(--paper-magenta) 100%); background-attachment:fixed; color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
   body.locked{overflow:hidden;}
   img{max-width:100%; display:block;}
   a{color:inherit;}
