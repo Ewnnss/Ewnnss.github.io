@@ -118,6 +118,7 @@
   .dropdown-link:hover{background:var(--paper-alt);}
 
   .view-container{padding:44px 32px 80px; max-width:920px; width:100%; margin:0 auto; position:relative; z-index:1;}
+  .view-container.is-fullbleed{max-width:none; padding:0;}
   .local-glow{position:absolute; border-radius:50%; filter:blur(100px); opacity:0.18; pointer-events:none; z-index:-1;}
   .local-glow.c{width:340px; height:340px; background:var(--cyan); top:-50px; right:-40px;}
   .local-glow.m{width:340px; height:340px; background:var(--magenta); top:200px; right:-180px;}
@@ -245,7 +246,7 @@
   .copy-btn:hover{border-color:var(--ink);}
 
   /* Access view — breaks the theme on purpose */
-  .view-access-outer{background:var(--night); margin:-44px -32px -80px; padding:64px 32px 80px; position:relative; overflow:hidden; min-height:calc(100vh - 65px);}
+  .view-access-outer{background:var(--night); width:100%; padding:72px 56px 90px; position:relative; overflow:hidden; min-height:calc(100vh - 65px);}
   .access-glow{position:absolute; border-radius:50%; filter:blur(90px); opacity:0.4; pointer-events:none;}
   .access-glow.cyan{width:420px; height:420px; background:var(--cyan); top:-140px; left:-80px;}
   .access-glow.magenta{width:420px; height:420px; background:var(--magenta); bottom:-160px; right:-60px;}
@@ -267,7 +268,7 @@
     .hamburger{display:inline-flex; align-items:center; justify-content:center;}
     .view-container{padding:32px 20px 60px;}
     .topbar{padding:14px 18px;}
-    .view-access-outer{margin:-32px -20px -60px; padding:48px 20px 60px;}
+    .view-access-outer{padding:48px 22px 60px;}
   }
 </style>
 </head>
@@ -831,6 +832,7 @@ function updateTopbarTitle(){
 function goToView(view){
   document.querySelectorAll(".view").forEach(v=> v.classList.toggle("is-active", v.dataset.view===view));
   document.querySelectorAll(".nav-item").forEach(b=> b.classList.toggle("is-active", b.dataset.view===view));
+  document.querySelector(".view-container").classList.toggle("is-fullbleed", view==="access");
   const accessBtn = document.querySelector(".sidebar-access");
   accessBtn.style.outline = view==="access" ? `2px solid var(--cyan)` : "none";
   updateTopbarTitle();
