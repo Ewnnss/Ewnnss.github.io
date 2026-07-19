@@ -96,11 +96,11 @@
   /* Main area */
   .main-area{flex:1; min-width:0; display:flex; flex-direction:column;}
   .bg-ambient{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
-  .bg-ambient span{position:absolute; border-radius:50%; filter:blur(140px);}
-  .bg-ambient .b1{width:680px; height:680px; background:var(--cyan); opacity:0.30; top:-220px; left:8%;}
-  .bg-ambient .b2{width:700px; height:700px; background:var(--magenta); opacity:0.30; bottom:-260px; right:-100px;}
-  .bg-ambient .b3{width:460px; height:460px; background:var(--magenta); opacity:0.16; top:140px; left:52%; filter:blur(120px);}
-  .topbar{position:sticky; top:0; z-index:50; background:rgba(250,250,250,0.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:16px 32px; gap:16px;}
+  .bg-ambient span{position:absolute; border-radius:50%; filter:blur(125px);}
+  .bg-ambient .b1{width:720px; height:720px; background:var(--cyan); opacity:0.42; top:-160px; left:6%;}
+  .bg-ambient .b2{width:740px; height:740px; background:var(--magenta); opacity:0.42; bottom:-260px; right:-100px;}
+  .bg-ambient .b3{width:480px; height:480px; background:var(--magenta); opacity:0.24; top:100px; left:52%; filter:blur(110px);}
+  .topbar{position:sticky; top:0; z-index:50; background:rgba(250,250,250,0.55); backdrop-filter:blur(14px); border-bottom:1px solid rgba(18,20,28,0.06); display:flex; align-items:center; justify-content:space-between; padding:16px 32px; gap:16px;}
   .topbar-title{font-family:var(--font-display); font-weight:600; font-size:15.5px; display:flex; align-items:center; gap:10px;}
   .topbar-right{position:relative; display:flex; align-items:center; gap:12px;}
   .dropdown-trigger{display:flex; align-items:center; gap:7px; background:#fff; border:1px solid var(--line); border-radius:999px; padding:8px 14px; font-size:13px; font-weight:600; color:var(--ink);}
@@ -231,9 +231,6 @@
   .contact-card:hover{transform:translateY(-3px); box-shadow:0 20px 44px -18px rgba(18,20,28,0.20); border-color:var(--line);}
   .contact-badge{width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:21px; margin-bottom:16px;}
   .contact-badge.grad{background:var(--gradient);}
-  .contact-badge.outline{background:rgba(49,225,242,0.15); border:1px solid rgba(49,225,242,0.4);}
-  .btn-outline-accent{background:rgba(49,225,242,0.08); color:#0C8296; border:1.5px solid rgba(49,225,242,0.5);}
-  .btn-outline-accent:hover{background:rgba(49,225,242,0.16); border-color:var(--cyan);}
   .contact-card h3{font-size:16.5px; font-weight:600; margin-bottom:8px;}
   .contact-card p{color:var(--ink-soft); font-size:13.5px; line-height:1.6; margin-bottom:18px;}
   .contact-card a.value{font-family:var(--font-mono); font-size:13.5px; color:var(--ink); text-decoration:underline; text-decoration-color:var(--line); word-break:break-all;}
@@ -450,10 +447,10 @@
             </button>
           </div>
           <div class="contact-card">
-            <span class="contact-badge outline">📧</span>
+            <span class="contact-badge grad">📧</span>
             <h3 data-i18n="contact_email_title">Par email</h3>
             <p data-i18n="contact_email_desc">Pour un bug ou une question détaillée.</p>
-            <a class="btn btn-outline-accent contact-cta" href="mailto:ewnnss7@gmail.com" data-i18n="contact_email_cta">Envoyer un email</a>
+            <a class="btn btn-gradient contact-cta" href="mailto:ewnnss7@gmail.com" data-i18n="contact_email_cta">Envoyer un email</a>
             <button class="id-chip copy-btn" data-copy="ewnnss7@gmail.com">
               <span class="val">ewnnss7@gmail.com</span>
               <span class="hint" data-i18n="copy_email">Copier l'email</span>
