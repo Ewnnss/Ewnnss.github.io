@@ -24,7 +24,7 @@
   }
   *{box-sizing:border-box;}
   @media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
-  body{margin:0; background:linear-gradient(160deg, var(--paper-cyan) 0%, var(--paper) 38%, var(--paper) 62%, var(--paper-magenta) 100%); background-attachment:fixed; color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-body); line-height:1.5; -webkit-font-smoothing:antialiased;}
   body.locked{overflow:hidden;}
   img{max-width:100%; display:block;}
   a{color:inherit;}
@@ -96,9 +96,10 @@
   /* Main area */
   .main-area{flex:1; min-width:0; display:flex; flex-direction:column;}
   .bg-ambient{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
-  .bg-ambient span{position:absolute; border-radius:50%; filter:blur(130px);}
-  .bg-ambient .b1{width:560px; height:560px; background:var(--cyan); opacity:0.10; top:-180px; left:20%;}
-  .bg-ambient .b2{width:560px; height:560px; background:var(--magenta); opacity:0.10; bottom:-220px; right:-60px;}
+  .bg-ambient span{position:absolute; border-radius:50%; filter:blur(140px);}
+  .bg-ambient .b1{width:680px; height:680px; background:var(--cyan); opacity:0.30; top:-220px; left:8%;}
+  .bg-ambient .b2{width:700px; height:700px; background:var(--magenta); opacity:0.30; bottom:-260px; right:-100px;}
+  .bg-ambient .b3{width:460px; height:460px; background:var(--magenta); opacity:0.16; top:140px; left:52%; filter:blur(120px);}
   .topbar{position:sticky; top:0; z-index:50; background:rgba(250,250,250,0.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:16px 32px; gap:16px;}
   .topbar-title{font-family:var(--font-display); font-weight:600; font-size:15.5px; display:flex; align-items:center; gap:10px;}
   .topbar-right{position:relative; display:flex; align-items:center; gap:12px;}
@@ -188,10 +189,16 @@
   .stats-column h3{font-size:14px; font-weight:600; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line); color:var(--ink-soft);}
   .stats-column--target h3{color:var(--magenta);}
   .stats-col-list{display:flex; flex-direction:column; gap:15px;}
-  .stats-row{display:flex; align-items:baseline; justify-content:space-between; gap:14px;}
+  .stats-row{display:flex; align-items:baseline; gap:10px;}
+  .stats-row .ic{font-size:14px; flex-shrink:0;}
   .stats-row .v{font-family:var(--font-display); font-weight:700; font-size:18px; flex-shrink:0; white-space:nowrap;}
   .stats-column--target .stats-row .v{background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent;}
-  .stats-row .l{color:var(--ink-soft); font-size:12.5px; text-align:right; line-height:1.4;}
+  .stats-row .l{color:var(--ink-soft); font-size:12.5px; text-align:right; line-height:1.4; margin-left:auto;}
+  .stats-progress{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:22px 24px; margin-top:20px; box-shadow:var(--shadow-card);}
+  .stats-progress__head{display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:13.5px; font-weight:600; margin-bottom:14px;}
+  .stats-progress__frac{font-family:var(--font-mono); color:var(--ink-faint); font-weight:500; font-size:12.5px; flex-shrink:0;}
+  .stats-progress__bar{height:10px; border-radius:999px; background:var(--paper-alt); overflow:hidden;}
+  .stats-progress__fill{height:100%; background:var(--gradient); border-radius:999px;}
 
   /* FAQ */
   .faq-list{margin-top:30px; display:flex; flex-direction:column; gap:10px;}
@@ -224,7 +231,9 @@
   .contact-card:hover{transform:translateY(-3px); box-shadow:0 20px 44px -18px rgba(18,20,28,0.20); border-color:var(--line);}
   .contact-badge{width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:21px; margin-bottom:16px;}
   .contact-badge.grad{background:var(--gradient);}
-  .contact-badge.outline{background:var(--paper-alt); border:1px solid var(--line);}
+  .contact-badge.outline{background:rgba(49,225,242,0.15); border:1px solid rgba(49,225,242,0.4);}
+  .btn-outline-accent{background:rgba(49,225,242,0.08); color:#0C8296; border:1.5px solid rgba(49,225,242,0.5);}
+  .btn-outline-accent:hover{background:rgba(49,225,242,0.16); border-color:var(--cyan);}
   .contact-card h3{font-size:16.5px; font-weight:600; margin-bottom:8px;}
   .contact-card p{color:var(--ink-soft); font-size:13.5px; line-height:1.6; margin-bottom:18px;}
   .contact-card a.value{font-family:var(--font-mono); font-size:13.5px; color:var(--ink); text-decoration:underline; text-decoration-color:var(--line); word-break:break-all;}
@@ -303,7 +312,7 @@
 
   <!-- ===== Main ===== -->
   <div class="main-area">
-    <div class="bg-ambient"><span class="b1"></span><span class="b2"></span></div>
+    <div class="bg-ambient"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
     <header class="topbar">
       <div class="topbar-title">
         <button class="hamburger" id="hamburgerBtn" aria-label="Menu">☰</button>
@@ -398,6 +407,10 @@
             <div class="stats-col-list" id="statsTargetList"></div>
           </div>
         </div>
+        <div class="stats-progress">
+          <div class="stats-progress__head"><span data-i18n="stats_progress_label">Embeds — où en est la V1</span><span class="stats-progress__frac">23 / 113</span></div>
+          <div class="stats-progress__bar"><div class="stats-progress__fill" style="width:20%"></div></div>
+        </div>
         <div class="note-box" data-i18n="stats_note">Les chiffres "Aujourd'hui" sont extraits du code source.</div>
       </section>
 
@@ -440,7 +453,7 @@
             <span class="contact-badge outline">📧</span>
             <h3 data-i18n="contact_email_title">Par email</h3>
             <p data-i18n="contact_email_desc">Pour un bug ou une question détaillée.</p>
-            <a class="btn btn-outline contact-cta" href="mailto:ewnnss7@gmail.com" data-i18n="contact_email_cta">Envoyer un email</a>
+            <a class="btn btn-outline-accent contact-cta" href="mailto:ewnnss7@gmail.com" data-i18n="contact_email_cta">Envoyer un email</a>
             <button class="id-chip copy-btn" data-copy="ewnnss7@gmail.com">
               <span class="val">ewnnss7@gmail.com</span>
               <span class="hint" data-i18n="copy_email">Copier l'email</span>
@@ -509,6 +522,7 @@ fr: {
   stats_desc:"Deux façons de voir où en est Ewnnix : ce qui tourne aujourd'hui dans le code, et l'objectif visé par la V1 complète.",
   stats_updated_label:"Dernière mise à jour", stats_updated_value:"19 juillet 2026",
   stats_col_a_title:"Aujourd'hui · V1 bêta (code réel)", stats_col_b_title:"Objectif · V1 complète (feuille de route)",
+  stats_progress_label:"Embeds — où en est la V1",
   stats_note:"Les chiffres \"Aujourd'hui\" sont extraits directement du code source du bot. Les chiffres \"Objectif\" viennent de la documentation technique de la V1, et évolueront au fil du développement.",
 
   faq_kicker:"Des questions ?", faq_title:"FAQ",
@@ -526,17 +540,17 @@ fr: {
 
   stats:[{v:"113",l:"événements loggés"},{v:"7",l:"catégories auto-créées"},{v:"/setup",l:"commande pour tout configurer"},{v:"🌐",l:"site ouvert à tous, sans inscription"}],
   stats_today:[
-    {v:"1 251",l:"lignes de code"},
-    {v:"23",l:"embeds définis"},
-    {v:"41",l:"fonctions"},
-    {v:"1",l:"commande slash (/setup)"},
-    {v:"4",l:"event listeners Discord"}
+    {ic:"📝",v:"1 251",l:"lignes de code"},
+    {ic:"💬",v:"23",l:"embeds définis"},
+    {ic:"⚙️",v:"41",l:"fonctions"},
+    {ic:"⚡",v:"1",l:"commande slash (/setup)"},
+    {ic:"📡",v:"4",l:"event listeners Discord"}
   ],
   stats_target:[
-    {v:"113",l:"types d'événements loggés"},
-    {v:"jusqu'à 113",l:"embeds différents (un par événement)"},
-    {v:"7",l:"catégories de logs"},
-    {v:"1",l:"commande pour tout configurer"}
+    {ic:"🗂️",v:"113",l:"types d'événements loggés"},
+    {ic:"💬",v:"jusqu'à 113",l:"embeds différents (un par événement)"},
+    {ic:"📁",v:"7",l:"catégories de logs"},
+    {ic:"⚡",v:"1",l:"commande pour tout configurer"}
   ],
   cards:[
     {icon:"🛡️",title:"Sécurité",count:"24",desc:"Détection des vagues d'actions dangereuses, en temps réel.",items:["Vague de bans ou d'expulsions","Raid de nouveaux comptes","Rôle Administrateur créé ou donné","Icône, nom, bannière du serveur"]},
@@ -564,8 +578,9 @@ fr: {
     {q:"Le bot suit-il les allers-retours d'un membre qui quitte puis revient ?",a:"Oui : Ewnnix compte le nombre de fois qu'un membre a rejoint ou quitté le serveur, et l'indique dans les logs."}
   ],
   changelog:[
-    {tag:"Bêta actuelle",icon:"🚀",upcoming:false,title:"Lancement de la V1 — système de logs complet",desc:"113 événements suivis sur 7 catégories, commande /setup automatique, statut du bot en direct dans #status."},
-    {tag:"À venir · V2",icon:"🧬",upcoming:true,title:"Modération générale & Case ID",desc:"Sanctions directement depuis Ewnnix, reliées à un identifiant de dossier unique. Pas de date précise pour l'instant."}
+    {tag:"Bêta actuelle",icon:"🧪",upcoming:false,title:"Bêta fermée — système de logs en test",desc:"113 événements suivis sur 7 catégories, commande /setup automatique, statut du bot en direct dans #status. Accès sur invitation uniquement."},
+    {tag:"Objectif · V1",icon:"🚀",upcoming:true,title:"Sortie de la V1 stable",desc:"La bêta se referme : le système de logs complet devient la version de référence, stable et prête pour plus de serveurs."},
+    {tag:"Après la V1 · V2",icon:"🧬",upcoming:true,title:"Modération générale & Case ID",desc:"Sanctions directement depuis Ewnnix, reliées à un identifiant de dossier unique. Pas de date précise pour l'instant."}
   ]
 },
 en: {
@@ -598,6 +613,7 @@ en: {
   stats_desc:"Two ways to see where Ewnnix stands: what's actually running in the code today, and the target for a complete V1.",
   stats_updated_label:"Last updated", stats_updated_value:"July 19, 2026",
   stats_col_a_title:"Today · V1 beta (real code)", stats_col_b_title:"Target · full V1 (roadmap)",
+  stats_progress_label:"Embeds — V1 progress",
   stats_note:"\"Today\" figures are pulled directly from the bot's source code. \"Target\" figures come from the V1 technical spec, and will evolve as development continues.",
 
   faq_kicker:"Questions?", faq_title:"FAQ",
@@ -615,17 +631,17 @@ en: {
 
   stats:[{v:"113",l:"logged events"},{v:"7",l:"auto-created categories"},{v:"/setup",l:"command to set everything up"},{v:"🌐",l:"site open to everyone, no sign-up"}],
   stats_today:[
-    {v:"1,251",l:"lines of code"},
-    {v:"23",l:"embeds defined"},
-    {v:"41",l:"functions"},
-    {v:"1",l:"slash command (/setup)"},
-    {v:"4",l:"Discord event listeners"}
+    {ic:"📝",v:"1,251",l:"lines of code"},
+    {ic:"💬",v:"23",l:"embeds defined"},
+    {ic:"⚙️",v:"41",l:"functions"},
+    {ic:"⚡",v:"1",l:"slash command (/setup)"},
+    {ic:"📡",v:"4",l:"Discord event listeners"}
   ],
   stats_target:[
-    {v:"113",l:"logged event types"},
-    {v:"up to 113",l:"different embeds (one per event)"},
-    {v:"7",l:"log categories"},
-    {v:"1",l:"command to set everything up"}
+    {ic:"🗂️",v:"113",l:"logged event types"},
+    {ic:"💬",v:"up to 113",l:"different embeds (one per event)"},
+    {ic:"📁",v:"7",l:"log categories"},
+    {ic:"⚡",v:"1",l:"command to set everything up"}
   ],
   cards:[
     {icon:"🛡️",title:"Security",count:"24",desc:"Real-time detection of dangerous action waves.",items:["Ban or kick waves","New-account raid waves","Admin role created or granted","Server icon, name, banner"]},
@@ -653,8 +669,9 @@ en: {
     {q:"Does the bot track members who leave and rejoin?",a:"Yes: Ewnnix counts how many times a member has joined or left the server, and shows it in the logs."}
   ],
   changelog:[
-    {tag:"Current beta",icon:"🚀",upcoming:false,title:"V1 launch — full logging system",desc:"113 tracked events across 7 categories, automatic /setup command, live bot status in #status."},
-    {tag:"Coming · V2",icon:"🧬",upcoming:true,title:"General moderation & Case ID",desc:"Sanctions directly from Ewnnix, linked to a unique case ID. No exact date yet."}
+    {tag:"Current beta",icon:"🧪",upcoming:false,title:"Closed beta — logging system in testing",desc:"113 tracked events across 7 categories, automatic /setup command, live bot status in #status. Invite-only access."},
+    {tag:"Target · V1",icon:"🚀",upcoming:true,title:"Stable V1 release",desc:"The beta wraps up: the complete logging system becomes the stable, reference version, ready for more servers."},
+    {tag:"After V1 · V2",icon:"🧬",upcoming:true,title:"General moderation & Case ID",desc:"Sanctions directly from Ewnnix, linked to a unique case ID. No exact date yet."}
   ]
 },
 es: {
@@ -687,6 +704,7 @@ es: {
   stats_desc:"Dos formas de ver en qué punto está Ewnnix: lo que realmente funciona hoy en el código, y el objetivo de una V1 completa.",
   stats_updated_label:"Última actualización", stats_updated_value:"19 de julio de 2026",
   stats_col_a_title:"Hoy · V1 beta (código real)", stats_col_b_title:"Objetivo · V1 completa (hoja de ruta)",
+  stats_progress_label:"Embeds — progreso de la V1",
   stats_note:"Las cifras de \"Hoy\" se extraen directamente del código fuente del bot. Las cifras de \"Objetivo\" vienen de la documentación técnica de la V1, y evolucionarán con el desarrollo.",
 
   faq_kicker:"¿Dudas?", faq_title:"FAQ",
@@ -704,17 +722,17 @@ es: {
 
   stats:[{v:"113",l:"eventos registrados"},{v:"7",l:"categorías auto-creadas"},{v:"/setup",l:"comando para configurarlo todo"},{v:"🌐",l:"sitio abierto a todos, sin registro"}],
   stats_today:[
-    {v:"1.251",l:"líneas de código"},
-    {v:"23",l:"embeds definidos"},
-    {v:"41",l:"funciones"},
-    {v:"1",l:"comando slash (/setup)"},
-    {v:"4",l:"event listeners de Discord"}
+    {ic:"📝",v:"1.251",l:"líneas de código"},
+    {ic:"💬",v:"23",l:"embeds definidos"},
+    {ic:"⚙️",v:"41",l:"funciones"},
+    {ic:"⚡",v:"1",l:"comando slash (/setup)"},
+    {ic:"📡",v:"4",l:"event listeners de Discord"}
   ],
   stats_target:[
-    {v:"113",l:"tipos de eventos registrados"},
-    {v:"hasta 113",l:"embeds distintos (uno por evento)"},
-    {v:"7",l:"categorías de logs"},
-    {v:"1",l:"comando para configurarlo todo"}
+    {ic:"🗂️",v:"113",l:"tipos de eventos registrados"},
+    {ic:"💬",v:"hasta 113",l:"embeds distintos (uno por evento)"},
+    {ic:"📁",v:"7",l:"categorías de logs"},
+    {ic:"⚡",v:"1",l:"comando para configurarlo todo"}
   ],
   cards:[
     {icon:"🛡️",title:"Seguridad",count:"24",desc:"Detección en tiempo real de oleadas de acciones peligrosas.",items:["Oleadas de bans o expulsiones","Oleadas de cuentas nuevas (raid)","Rol de Administrador creado u otorgado","Icono, nombre o banner del servidor"]},
@@ -742,8 +760,9 @@ es: {
     {q:"¿El bot registra a los miembros que se van y vuelven?",a:"Sí: Ewnnix cuenta cuántas veces un miembro se ha unido o ha salido del servidor, y lo muestra en los logs."}
   ],
   changelog:[
-    {tag:"Beta actual",icon:"🚀",upcoming:false,title:"Lanzamiento de la V1 — sistema de logs completo",desc:"113 eventos registrados en 7 categorías, comando /setup automático, estado del bot en vivo en #status."},
-    {tag:"Próximamente · V2",icon:"🧬",upcoming:true,title:"Moderación general y Case ID",desc:"Sanciones directamente desde Ewnnix, vinculadas a un identificador de caso único. Sin fecha exacta por ahora."}
+    {tag:"Beta actual",icon:"🧪",upcoming:false,title:"Beta cerrada — sistema de logs en pruebas",desc:"113 eventos registrados en 7 categorías, comando /setup automático, estado del bot en vivo en #status. Acceso solo por invitación."},
+    {tag:"Objetivo · V1",icon:"🚀",upcoming:true,title:"Lanzamiento de la V1 estable",desc:"La beta se cierra: el sistema de logs completo se convierte en la versión de referencia, estable y lista para más servidores."},
+    {tag:"Después de la V1 · V2",icon:"🧬",upcoming:true,title:"Moderación general y Case ID",desc:"Sanciones directamente desde Ewnnix, vinculadas a un identificador de caso único. Sin fecha exacta por ahora."}
   ]
 }
 };
@@ -780,7 +799,7 @@ function renderChangelog(lang){
     </div>`).join("");
 }
 function renderDevStats(lang){
-  const mk = arr => arr.map(s=>`<div class="stats-row"><span class="v">${s.v}</span><span class="l">${s.l}</span></div>`).join("");
+  const mk = arr => arr.map(s=>`<div class="stats-row"><span class="ic">${s.ic}</span><span class="v">${s.v}</span><span class="l">${s.l}</span></div>`).join("");
   document.getElementById("statsTodayList").innerHTML = mk(dict[lang].stats_today);
   document.getElementById("statsTargetList").innerHTML = mk(dict[lang].stats_target);
 }
