@@ -264,20 +264,22 @@
   .access-desc{color:var(--night-soft); font-size:16px; line-height:1.7; max-width:520px; margin-bottom:30px;}
   .access-cards{display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:640px; margin-top:8px;}
   @media (max-width:640px){ .access-cards{grid-template-columns:1fr;} }
-  .access-card{background:var(--night-card); border:1px solid var(--night-line); border-radius:var(--radius); padding:24px; transition:transform .18s ease, border-color .18s ease;}
+  .access-card{background:var(--night-card); border:1px solid var(--night-line); border-radius:var(--radius); padding:24px; transition:transform .18s ease, border-color .18s ease; display:flex; flex-direction:column;}
   .access-card:hover{transform:translateY(-2px); border-color:rgba(255,255,255,0.18);}
   .access-card h3{color:var(--night-text); font-size:16px; font-weight:600; margin-bottom:8px;}
-  .access-card p{color:var(--night-soft); font-size:13px; line-height:1.6; margin-bottom:16px;}
+  .access-card p{color:var(--night-soft); font-size:13px; line-height:1.6; margin-bottom:16px; flex:1;}
   .access-card .contact-cta{width:100%; margin-bottom:12px;}
   .access-id-chip{display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; background:var(--night); border:1px solid var(--night-line); border-radius:8px; padding:9px 11px; opacity:0.85; transition:opacity .15s ease;}
   .access-id-chip:hover{opacity:1;}
   .access-id-chip .val{font-family:var(--font-mono); font-size:11px; color:var(--cyan); word-break:break-all;}
   .access-id-chip .hint{font-family:var(--font-mono); font-size:10.5px; color:var(--night-soft); flex-shrink:0;}
+  .access-card--center{align-items:center; text-align:center;}
+  .access-card--center .access-id-chip{justify-content:center; gap:14px;}
   .access-faq-link{background:transparent; border:none; padding:0; color:var(--night-soft); font-size:13px; font-weight:600; margin-top:24px; display:inline-flex; align-items:center; gap:6px; text-decoration:underline; text-decoration-color:var(--night-line); cursor:pointer;}
   .access-faq-link:hover{color:var(--night-text);}
 
   /* Dark topbar when the Access view is active */
-  .main-area.theme-dark .topbar{background:rgba(10,11,16,0.72); border-bottom-color:var(--night-line);}
+  .main-area.theme-dark .topbar{background:rgba(6,7,11,0.88); border-bottom-color:var(--night-line);}
   .main-area.theme-dark .topbar-title{color:var(--night-text);}
   .main-area.theme-dark .dropdown-trigger{background:var(--night-card); border-color:var(--night-line); color:var(--night-text);}
   .main-area.theme-dark .dropdown-trigger:hover{border-color:var(--cyan);}
@@ -505,7 +507,7 @@
                   <span class="hint" data-i18n="join_copy">Copier l'ID</span>
                 </button>
               </div>
-              <div class="access-card">
+              <div class="access-card access-card--center">
                 <span class="contact-badge grad">📧</span>
                 <h3 data-i18n="contact_email_title">Par email</h3>
                 <p data-i18n="contact_email_desc">Pour un bug ou une question détaillée.</p>
