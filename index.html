@@ -262,13 +262,32 @@
   .access-badge{display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:12px; color:var(--night-soft); background:var(--night-card); border:1px solid var(--night-line); padding:7px 14px; border-radius:999px; margin-bottom:22px;}
   .access-title{font-size:clamp(38px,5.5vw,58px); font-weight:700; color:var(--night-text); line-height:1.02; margin-bottom:18px; background:var(--gradient); -webkit-background-clip:text; background-clip:text; color:transparent;}
   .access-desc{color:var(--night-soft); font-size:16px; line-height:1.7; max-width:520px; margin-bottom:30px;}
-  .access-id-card{background:var(--night-card); border:1px solid var(--night-line); border-radius:var(--radius); padding:22px; max-width:420px;}
-  .access-id-card .lbl{font-size:12px; color:var(--night-soft); margin-bottom:8px;}
-  .access-id-row{display:flex; align-items:center; justify-content:space-between; gap:12px; background:var(--night); border:1px solid var(--night-line); border-radius:var(--radius-sm); padding:12px 14px;}
-  .access-id-row span{font-family:var(--font-mono); font-size:13.5px; color:var(--cyan); word-break:break-all;}
-  .access-id-card .contact-line{margin-top:14px; font-size:12.5px; color:var(--night-soft);}
-  .access-id-card .contact-line a{color:var(--night-text); text-decoration:underline; text-decoration-color:var(--night-line);}
-  .access-ctas{display:flex; flex-wrap:wrap; gap:12px; margin:26px 0 30px;}
+  .access-cards{display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:640px; margin-top:8px;}
+  @media (max-width:640px){ .access-cards{grid-template-columns:1fr;} }
+  .access-card{background:var(--night-card); border:1px solid var(--night-line); border-radius:var(--radius); padding:24px; transition:transform .18s ease, border-color .18s ease;}
+  .access-card:hover{transform:translateY(-2px); border-color:rgba(255,255,255,0.18);}
+  .access-card h3{color:var(--night-text); font-size:16px; font-weight:600; margin-bottom:8px;}
+  .access-card p{color:var(--night-soft); font-size:13px; line-height:1.6; margin-bottom:16px;}
+  .access-card .contact-cta{width:100%; margin-bottom:12px;}
+  .access-id-chip{display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; background:var(--night); border:1px solid var(--night-line); border-radius:8px; padding:9px 11px; opacity:0.85; transition:opacity .15s ease;}
+  .access-id-chip:hover{opacity:1;}
+  .access-id-chip .val{font-family:var(--font-mono); font-size:11px; color:var(--cyan); word-break:break-all;}
+  .access-id-chip .hint{font-family:var(--font-mono); font-size:10.5px; color:var(--night-soft); flex-shrink:0;}
+  .access-faq-link{background:transparent; border:none; padding:0; color:var(--night-soft); font-size:13px; font-weight:600; margin-top:24px; display:inline-flex; align-items:center; gap:6px; text-decoration:underline; text-decoration-color:var(--night-line); cursor:pointer;}
+  .access-faq-link:hover{color:var(--night-text);}
+
+  /* Dark topbar when the Access view is active */
+  .main-area.theme-dark .topbar{background:rgba(10,11,16,0.72); border-bottom-color:var(--night-line);}
+  .main-area.theme-dark .topbar-title{color:var(--night-text);}
+  .main-area.theme-dark .dropdown-trigger{background:var(--night-card); border-color:var(--night-line); color:var(--night-text);}
+  .main-area.theme-dark .dropdown-trigger:hover{border-color:var(--cyan);}
+  .main-area.theme-dark .dropdown-panel{background:var(--night-card); border-color:var(--night-line); box-shadow:0 16px 40px -12px rgba(0,0,0,0.5);}
+  .main-area.theme-dark .dropdown-label{color:var(--night-soft);}
+  .main-area.theme-dark .dropdown-lang-btn{border-color:var(--night-line); color:var(--night-soft);}
+  .main-area.theme-dark .dropdown-lang-btn.is-active{background:var(--night-text); color:var(--night);}
+  .main-area.theme-dark .dropdown-link{color:var(--night-text);}
+  .main-area.theme-dark .dropdown-link:hover{background:var(--night);}
+  .main-area.theme-dark .hamburger{border-color:var(--night-line); color:var(--night-text);}
 
   @media (max-width:900px){
     .sidebar{position:fixed; left:0; top:0; transform:translateX(-100%); transition:transform .2s ease; width:280px; box-shadow:0 0 60px rgba(0,0,0,0.4);}
@@ -286,8 +305,8 @@
 <div class="lang-modal" id="langModal">
   <div class="lang-modal__inner">
     <img class="lang-modal__logo js-logo" alt="Ewnnix">
-    <div class="lang-modal__title" data-i18n="modal_title">Choose your language</div>
-    <div class="lang-modal__sub" data-i18n="modal_sub">You can change it at any time.</div>
+    <div class="lang-modal__title" data-i18n="modal_title">Choisis ta langue</div>
+    <div class="lang-modal__sub" data-i18n="modal_sub">Tu pourras la changer à tout moment.</div>
     <div class="lang-options">
       <button class="lang-option" data-lang="fr">Français <span class="code">FR</span></button>
       <button class="lang-option" data-lang="en">English <span class="code">EN</span></button>
@@ -475,15 +494,29 @@
             <span class="access-badge" data-i18n="access_kicker">🔒 Bêta fermée</span>
             <h1 class="access-title">Get Early Access</h1>
             <p class="access-desc" data-i18n="access_desc">Ewnnix tourne actuellement sur liste blanche.</p>
-            <div class="access-ctas">
-              <a class="btn btn-gradient" href="https://discord.com/users/937006462927003728" target="_blank" rel="noopener" data-i18n="join_dm_button">Envoyer un message</a>
-              <button class="btn btn-ghost" data-goto="faq" data-i18n="access_faq_link">Voir la FAQ</button>
+            <div class="access-cards">
+              <div class="access-card">
+                <span class="contact-badge grad">💬</span>
+                <h3 data-i18n="contact_dm_title">Par Discord</h3>
+                <p data-i18n="contact_dm_desc">Envoie un message privé directement au créateur.</p>
+                <a class="btn btn-gradient contact-cta" href="https://discord.com/users/937006462927003728" target="_blank" rel="noopener" data-i18n="join_dm_button">Envoyer un message</a>
+                <button class="access-id-chip copy-btn" data-copy="937006462927003728">
+                  <span class="val">937006462927003728</span>
+                  <span class="hint" data-i18n="join_copy">Copier l'ID</span>
+                </button>
+              </div>
+              <div class="access-card">
+                <span class="contact-badge grad">📧</span>
+                <h3 data-i18n="contact_email_title">Par email</h3>
+                <p data-i18n="contact_email_desc">Pour un bug ou une question détaillée.</p>
+                <a class="btn btn-gradient contact-cta" href="mailto:ewnnss7@gmail.com" data-i18n="contact_email_cta">Envoyer un email</a>
+                <button class="access-id-chip copy-btn" data-copy="ewnnss7@gmail.com">
+                  <span class="val">ewnnss7@gmail.com</span>
+                  <span class="hint" data-i18n="copy_email">Copier l'email</span>
+                </button>
+              </div>
             </div>
-            <div class="access-id-card">
-              <div class="lbl" data-i18n="join_id_label">ID Discord du créateur</div>
-              <div class="access-id-row"><span>937006462927003728</span><button class="copy-btn" data-copy="937006462927003728" data-i18n="join_copy">Copier l'ID</button></div>
-              <div class="contact-line"><span data-i18n="join_email_label">Support / bug</span> — <a href="mailto:ewnnss7@gmail.com">ewnnss7@gmail.com</a></div>
-            </div>
+            <button class="access-faq-link" data-goto="faq"><span data-i18n="access_faq_link">Voir la FAQ</span> →</button>
           </div>
         </div>
       </section>
@@ -859,6 +892,7 @@ function goToView(view){
   document.querySelectorAll(".view").forEach(v=> v.classList.toggle("is-active", v.dataset.view===view));
   document.querySelectorAll(".nav-item").forEach(b=> b.classList.toggle("is-active", b.dataset.view===view));
   document.querySelector(".view-container").classList.toggle("is-fullbleed", view==="access");
+  document.querySelector(".main-area").classList.toggle("theme-dark", view==="access");
   const accessBtn = document.querySelector(".sidebar-access");
   accessBtn.style.outline = view==="access" ? `2px solid var(--cyan)` : "none";
   updateTopbarTitle();
