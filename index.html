@@ -1256,7 +1256,7 @@ accessForm.addEventListener("submit", async function(e){
     title: `🖥️  ${safe(servername, "Serveur sans nom")}`,
     url: invite,
     color: 0xF23DAE,
-    description: `> 🔗 **[Rejoindre le serveur](${invite})**\n\u200B`,
+    description: `> 🔗 **[Rejoindre le serveur](${invite})**\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬`,
     fields: [
       { name: "👤  Pseudo Discord", value: safe(displayname), inline: true },
       { name: "🏷️  Utilisateur", value: `@${safe(username)}`, inline: true },
@@ -1264,6 +1264,7 @@ accessForm.addEventListener("submit", async function(e){
       { name: "🆔  ID serveur", value: `\`${safe(serverid)}\``, inline: true },
       { name: "📡  Origine", value: safe(sourceLabel), inline: true },
       { name: "🌐  Langue", value: langFlag, inline: true },
+      { name: "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬", value: "\u200B", inline: false },
       { name: "💬  Pourquoi ce serveur ?", value: safe(reason).slice(0, 900), inline: false }
     ],
     footer: {
