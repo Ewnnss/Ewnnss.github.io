@@ -1251,23 +1251,23 @@ accessForm.addEventListener("submit", async function(e){
 
   const embed = {
     author: {
-      name: "📥 Nouvelle demande d'accès à la bêta"
+      name: "Ewnnix · Nouvelle demande d'accès"
     },
-    title: `🖥️ ${safe(servername, "Serveur sans nom")}`,
+    title: `🖥️  ${safe(servername, "Serveur sans nom")}`,
     url: invite,
     color: 0xF23DAE,
+    description: `> 🔗 **[Rejoindre le serveur](${invite})**\n\u200B`,
     fields: [
-      { name: "👤 Pseudo Discord", value: safe(displayname), inline: true },
-      { name: "🏷️ Nom d'utilisateur", value: `@${safe(username)}`, inline: true },
-      { name: "👥 Membres (approx.)", value: safe(membersFmt), inline: true },
-      { name: "🆔 ID du serveur", value: `\`${safe(serverid)}\``, inline: true },
-      { name: "🔗 Invitation", value: `[Rejoindre le serveur →](${invite})`, inline: true },
-      { name: "🌐 Langue du site", value: langFlag, inline: true },
-      { name: "💬 Pourquoi ce serveur ?", value: safe(reason).slice(0, 900), inline: false },
-      { name: "📡 Origine", value: safe(sourceLabel), inline: true }
+      { name: "👤  Pseudo Discord", value: safe(displayname), inline: true },
+      { name: "🏷️  Utilisateur", value: `@${safe(username)}`, inline: true },
+      { name: "👥  Membres", value: safe(membersFmt), inline: true },
+      { name: "🆔  ID serveur", value: `\`${safe(serverid)}\``, inline: true },
+      { name: "📡  Origine", value: safe(sourceLabel), inline: true },
+      { name: "🌐  Langue", value: langFlag, inline: true },
+      { name: "💬  Pourquoi ce serveur ?", value: safe(reason).slice(0, 900), inline: false }
     ],
     footer: {
-      text: "Ewnnix · Logs & More — Demande d'accès bêta"
+      text: "Ewnnix · Logs & More  —  Formulaire de bêta"
     },
     timestamp: new Date().toISOString()
   };
