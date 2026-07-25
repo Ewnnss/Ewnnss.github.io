@@ -1189,22 +1189,30 @@ accessForm.addEventListener("submit", async function(e){
     return;
   }
 
-  const sourceLabel = sourceVal && sourceLabelMap[sourceVal] ? sourceLabelMap[sourceVal][currentLang] : "—";
+  const sourceLabel = sourceVal && sourceLabelMap[sourceVal] ? sourceLabelMap[sourceVal][currentLang] : "*Non précisé*";
+  const langFlag = { fr:"🇫🇷 Français", en:"🇬🇧 English", es:"🇪🇸 Español" }[currentLang] || "🌐";
+  const membersNum = parseInt(members, 10);
+  const membersFmt = isNaN(membersNum) ? members : membersNum.toLocaleString("fr-FR");
 
   const embed = {
-    title: "🚀 Nouvelle demande d'accès — Ewnnix",
+    author: { name: "📥 Nouvelle demande d'accès à la bêta", icon_url: LOGO_SRC },
+    title: servername,
+    url: invite,
     color: 0xF23DAE,
+    thumbnail: { url: LOGO_SRC },
     fields: [
-      { name: "Pseudo (affichage)", value: displayname, inline: true },
-      { name: "Nom d'utilisateur", value: username, inline: true },
-      { name: "Membres (approx.)", value: members, inline: true },
-      { name: "Nom du serveur", value: servername, inline: true },
-      { name: "ID du serveur", value: serverid, inline: true },
-      { name: "Langue du site", value: currentLang.toUpperCase(), inline: true },
-      { name: "Comment il a connu Ewnnix", value: sourceLabel, inline: false },
-      { name: "Lien d'invitation", value: invite, inline: false },
-      { name: "Raison", value: reason.slice(0, 1000), inline: false }
+      { name: "​", value: "**👤 Demandeur**", inline: false },
+      { name: "Pseudo", value: displayname, inline: true },
+      { name: "Utilisateur", value: `@${username}`, inline: true },
+      { name: "​", value: "​", inline: true },
+      { name: "​", value: "**🖥️ Serveur**", inline: false },
+      { name: "Membres", value: `${membersFmt}`, inline: true },
+      { name: "ID", value: `\`${serverid}\``, inline: true },
+      { name: "Invitation", value: `[Rejoindre →](${invite})`, inline: true },
+      { name: "​", value: "**💬 Raison**", inline: false },
+      { name: "​", value: reason.slice(0, 800), inline: false }
     ],
+    footer: { text: `Ewnnix · Logs & More  •  ${langFlag}  •  Origine : ${sourceLabel.replace(/\*/g,"")}`, icon_url: LOGO_SRC },
     timestamp: new Date().toISOString()
   };
 
