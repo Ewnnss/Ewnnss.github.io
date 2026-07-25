@@ -1196,21 +1196,19 @@ accessForm.addEventListener("submit", async function(e){
 
   const embed = {
     author: { name: "📥 Nouvelle demande d'accès à la bêta", icon_url: LOGO_SRC },
-    title: servername,
-    url: invite,
+    title: servername || "Serveur",
     color: 0xF23DAE,
     thumbnail: { url: LOGO_SRC },
     fields: [
       { name: "​", value: "**👤 Demandeur**", inline: false },
-      { name: "Pseudo", value: displayname, inline: true },
-      { name: "Utilisateur", value: `@${username}`, inline: true },
-      { name: "​", value: "​", inline: true },
+      { name: "Pseudo", value: displayname || "—", inline: true },
+      { name: "Utilisateur", value: `@${username || "—"}`, inline: true },
       { name: "​", value: "**🖥️ Serveur**", inline: false },
-      { name: "Membres", value: `${membersFmt}`, inline: true },
-      { name: "ID", value: `\`${serverid}\``, inline: true },
-      { name: "Invitation", value: `[Rejoindre →](${invite})`, inline: true },
+      { name: "Membres", value: `${membersFmt || "—"}`, inline: true },
+      { name: "ID", value: `\`${serverid || "—"}\``, inline: true },
+      { name: "Invitation", value: invite ? `[Rejoindre →](${invite})` : "—", inline: true },
       { name: "​", value: "**💬 Raison**", inline: false },
-      { name: "​", value: reason.slice(0, 800), inline: false }
+      { name: "​", value: reason.slice(0, 800) || "—", inline: false }
     ],
     footer: { text: `Ewnnix · Logs & More  •  ${langFlag}  •  Origine : ${sourceLabel.replace(/\*/g,"")}`, icon_url: LOGO_SRC },
     timestamp: new Date().toISOString()
@@ -1235,10 +1233,18 @@ accessForm.addEventListener("submit", async function(e){
       setFormStatus(dict[currentLang].form_success, "ok");
       accessForm.reset();
     } else {
-      setFormStatus(dict[currentLang].form_error, "err");
+      const bodyText = await res.text().catch(()=>"");
+      let detail = ` (${res.status})`;
+      try{
+        const errBody = JSON.parse(bodyText);
+        if(errBody && errBody.message) detail = ` (${res.status}: ${errBody.message})`;
+      } catch(_){}
+      setFormStatus(dict[currentLang].form_error + detail, "err");
+      console.error("Webhook error", res.status, bodyText);
     }
   } catch(err){
-    setFormStatus(dict[currentLang].form_error, "err");
+    setFormStatus(dict[currentLang].form_error + " (réseau)", "err");
+    console.error("Fetch error", err);
   } finally {
     formSubmitBtn.disabled = false;
     formSubmitLabel.textContent = originalLabel;
